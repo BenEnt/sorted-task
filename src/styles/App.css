@@ -61,6 +61,11 @@
 .postView-body {
   padding: 0 16px
 }
+
+.postView-body p {
+  white-space: pre-line;
+}
+
 .postView-header {
   border-bottom: 1px solid #CCC;
 }

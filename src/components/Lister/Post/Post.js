@@ -9,7 +9,7 @@ const Post = ({ title = '', body = '', author = '', onDelete = () => { } }) => (
 		</div>
 
 		<div className="postView-body">
-			<p dangerouslySetInnerHTML={{ __html: body }}></p>
+			<p>{body.replace(/<br\s*[\/]?>/gi, "\n")}</p>
 			<p className="postView-author">Posted by: {author}</p>
 		</div>
 
