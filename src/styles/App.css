@@ -21,7 +21,7 @@
 }
 
 .App-body {
-  margin: 16px 24px;
+  margin: 16px 24px 50px;
 }
 
 @keyframes App-logo-spin {
@@ -32,6 +32,8 @@
     transform: rotate(360deg);
   }
 }
+
+
 
 .postList {
   margin-bottom: 32px;
@@ -45,35 +47,46 @@
   padding: 8px 16px;
   margin: 16px 0;
 }
+.postView {
+  padding: 0;
+}
+.postView-header,
+.postView-footer,
+.postView-body {
+  padding: 8px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.postView-body {
+  padding: 0 16px
+}
+.postView-header {
+  border-bottom: 1px solid #CCC;
+}
+
+.postView-footer {
+  border-top: 1px solid #CCC;
+  justify-content: flex-end;
+  background-color: #f0f2f2b5;
+  flex-direction: row ;
+}
+
+.postView-author {
+  font-style: italic;
+}
 
 .postView h2 {
-  margin: 8px 0 0 0;
-  padding: 0;
-}
-
-
-fieldset {
-  border: 1px solid blue;
-  border-radius: 8px;
-  padding: 16px;
-  font-size: 90%;
-}
-
-fieldset h3 {
-  margin: 0 0 16px 0;
-  padding: 0;
-}
-
-fieldset > ul {
-  list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-fieldset > ul > li {
-  margin-bottom: 8px;
+.row {
+  display: flex;
+  flex-direction: row;
 }
 
-fieldset label {
-  display: block;
+.col { 
+  justify-content: space-between;
 }
+

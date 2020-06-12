@@ -1,11 +1,21 @@
 import React from 'react';
 
+// JSON contains <br/>'s...
+
 const Post = ({ title = '', body = '', author = '', onDelete = () => { } }) => (
 	<div className="postView">
-		<h2>{title}</h2>
-		<p>{body}</p>
-		<p>Posted by: {author}</p>
-		<button onClick={onDelete}>Delete</button>
+		<div className="postView-header">
+			<h2>{title}</h2>
+		</div>
+
+		<div className="postView-body">
+			<p dangerouslySetInnerHTML={{ __html: body }}></p>
+			<p className="postView-author">Posted by: {author}</p>
+		</div>
+
+		<div className="postView-footer">
+			<button className="button button-delete" onClick={onDelete}>Delete</button>
+		</div>
 	</div>
 )
 

@@ -3,6 +3,9 @@ import getPosts from '../../services/posts';
 import Post from './Post'
 import CreatePost from './CreatePost';
 
+import "../../styles/buttons.css"
+
+const isEmpty = (obj) => !Object.values(obj).some(x => (x !== null && x !== ''));
 const removeItemFromArray = (arr, id) => arr.filter(item => item.id !== id);
 const Message = ({ className, children }) => <div className={className}>{children}</div>
 
@@ -32,6 +35,10 @@ const Lister = () => {
 	}
 
 	const onCreatePost = (post) => {
+		if (isEmpty(post)) {
+			return false;
+		}
+
 		post.id = allPosts.length + 1;
 		setPosts(posts => [...posts, post]);
 	}

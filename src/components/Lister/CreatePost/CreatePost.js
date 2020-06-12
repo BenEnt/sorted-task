@@ -31,10 +31,10 @@ const CreatePost = ({ onCreate }) => {
 	const [{ title, body, author }, dispatch] = useReducer(postReducer, initialState)
 
 	return (
-		<form className="create-post" aria-label="Create post">
+		<form className="create-post" aria-label="Create post" onSubmit={(e) => e.preventDefault()}>
 			<fieldset>
 				<h3>Add new post</h3>
-				<ul>
+				<ul className="mb-3">
 					<li>
 						<label htmlFor="title">Title</label>
 						<input type="text" id="title" value={title} onChange={({ target: { value } }) => dispatch({ type: 'update', key: 'title', value })} />
@@ -49,12 +49,12 @@ const CreatePost = ({ onCreate }) => {
 					</li>
 				</ul>
 
-				<div>
-					<button type="button" onClick={() => {
+				<div className="row col">
+					<button type="submit" className="button button-save" onClick={() => {
 						onCreate({ title, body, author });
 						dispatch({ type: 'reset' })
 					}}>Add post</button>
-					<button type="button" onClick={() => dispatch({ type: 'reset' })}>Reset</button>
+					<button type="button" className="button button-reset" onClick={() => dispatch({ type: 'reset' })}>Reset</button>
 				</div>
 			</fieldset>
 		</form>
