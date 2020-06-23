@@ -9,24 +9,41 @@ const isEmpty = (obj) => !Object.values(obj).some(x => (x !== null && x !== ''))
 const removeItemFromArray = (arr, id) => arr.filter(item => item.id !== id);
 const Message = ({ className, children }) => <div className={className}>{children}</div>
 
-const Lister = () => {
+const Lister = ({ searchTerm = '' }) => {
 	const [hasError, setHasError] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [allPosts, setPosts] = useState([]);
+
+
+	const handleSearchTerm = (data) => {
+
+		let dataCloned = [...data];
+		const searchTermToLower = searchTerm.toLowerCase().replace(/\s/g, '');
+
+		if (searchTermToLower.length > 3) {
+			dataCloned = dataCloned.filter(post => {
+				const postTitle = post.title.toLowerCase().replace(/\s/g, '');
+
+				return postTitle.indexOf(searchTermToLower) > -1
+			})
+		}
+
+		setPosts(dataCloned);
+	}
 
 
 	useEffect(() => {
 		getPosts()
 			.then(data => {
 				setLoading(false);
-				setPosts(data);
+				handleSearchTerm(data);
 			})
 			.catch(err => {
 				setHasError(true);
 				setLoading(false);
 				console.log(err);
 			});
-	}, []);
+	}, [searchTerm, handleSearchTerm]);
 
 
 	const onDeletePost = (id) => {
